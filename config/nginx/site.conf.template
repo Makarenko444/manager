@@ -1,0 +1,15 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name ${SERVER_DOMAIN};
+
+    root ${SERVER_PATH};
+    index index.html;
+
+    access_log /var/log/nginx/${SERVER_DOMAIN}_access.log;
+    error_log /var/log/nginx/${SERVER_DOMAIN}_error.log;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
